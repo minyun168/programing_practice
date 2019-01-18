@@ -9,4 +9,4 @@ def greet_users(names):
 
 usernames = ['Harry potte','angerbaby','lihua']
 greet_users = greet_users(usernames)
-print (greet_users)
+#print (greet_users)  # we need not to do so 
