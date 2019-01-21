@@ -4,5 +4,10 @@ def city_country(city,country):
 	return city_country
 
 city_country = city_country('shanghai', 'china')
-print (city_country)
+#print (city_country)
+
+city_country = city_country('tianjin', 'china')
+#
+city_country = city_country('tokyo', 'japanese')
+#
 	
