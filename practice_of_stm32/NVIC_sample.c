@@ -22,7 +22,3 @@ EXTI_InitStructure.EXTI_Line = EXTI_Line2;
 EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
 EXTI_InitSTructure.EXTI_Trigger = EXTI_Trigger_Falling;
 EXTI_Init(&EXTI_InitStructure);
-
-
-
-
