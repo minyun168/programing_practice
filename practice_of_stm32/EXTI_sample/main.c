@@ -20,14 +20,14 @@ int main (void)
 	NVIC_Configuration();
 	GPIO_Configuration();
 
-	while(1)
+	while(1)          
 	{
 		Key_scan;
-		if (num==2 && b==0)
+		if (num==2 && b==0)    
 		{
 			GPIO_ResetBits(GPIOB,GPIO_Pin_5);
-			b=1;
-
+			b=1;  // The effection of variable "b" is for changing the state of LED when we pressing the Key next time. Not for LED LOOP.Because when the function "Key_Scan" is executed next time,"num=0".
+  
 		}
 		else if (num==2 && b==1)
 		{
@@ -39,3 +39,21 @@ int main (void)
 
 	}
 }
+
+void Key_Scan(void)
+{
+	num=0;
+	if (_it0==2)
+	{
+		if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_2)==0)
+		{
+  			Delay(0xffff);  // Delay for shaking accidently
+  			if (GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_2)==0)
+  			{
+  				while(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_2)==0); //empty "while loop", when pressing the button
+  				num=2; //when release the button
+		}
+	}
+	_it0=0;
+}
+
