@@ -52,7 +52,7 @@ void USART_Config(void) //the configuration detail you can see: UART_USART_confi
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
 	USART_InitStructure.USART_StopBits = USART_StopBits_1;
 	USART_InitStructure.USART_Parity = USART_Parity_No; //Verification bit is None
-	USART_InitStructure.USART_HardWareFlowControl = USART_HardWareFlowControl_None;
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
 	USART_InitStructure.USART_Mode = USART_Mode_Tx;
 	USART_Init(USART1,&USART_InitStructure);
 	USART_Cmd(USART1,ENABLE);
