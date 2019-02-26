@@ -1,4 +1,4 @@
-//Transfer data from "Hello DMA" to "DMA Hello"
+//Transfer data from "Hello DMA" to "DMA Hello" in memory
 
 #include "stm32f10x.h"
 #include "stm32f10x_usart.h"
@@ -94,7 +94,7 @@ void DMA_Configuration(void)
 	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)SrcBuf; //Though the test is memory to memory, we should define an address as "peripheral address". (Here is the data transfer source address)
 	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)DstBuf; //Memory address(Here is data transfer Destination address)
 	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC; //*Define peripheral address as source(Here is from SrcBuf to DstBuf);when we need to define peripheral as destination,use"DMA_DIR_PeripheralDST"
-	DMA_InitStructure.DMA_BufferSize = 10; //The length of data transfer
+	DMA_InitStructure.DMA_BufferSize = 10; //The length of data transfer(here is "Hello DMA")
 	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Enable; 
 	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable; // Set data pointer automatic add
 	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
