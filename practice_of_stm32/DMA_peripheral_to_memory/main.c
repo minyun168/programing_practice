@@ -12,6 +12,7 @@ void USART_Configuration(void);
 int fputc(int ch, FILE *f);
 
 uint8_t SrcBuf[12]="xxxxxxxxxxx";
+int main(void)
 {
 	uint8_t flag=1; //flag is for loop
 	RCC_Configuration();
@@ -104,6 +105,6 @@ int fputc(int ch,FILE *f)
 	}
 	while(USRAT_GetFlagStatus(USSART1,USSART_FLAG_TC)==RESET);
 	USART_SendData(USART1,ch);
-	
+
 	return ch;
 }
