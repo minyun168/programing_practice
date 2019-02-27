@@ -21,7 +21,7 @@ uint8_t SrcBuf[12]="xxxxxxxxxxx";
 
 	USART_ClearFlag(USART1,USART_FLAG_TC);
 	USART_DMACmd(USART1,USART_DMAReq_Rx,ENABLE);
-	DMA_Cmd(DMA1_Channel4,ENABLE);
+	DMA_Cmd(DMA1_Channel5,ENABLE); //Notice:USART1 Rx should use channel5
 
 	while(flag)
 	{
@@ -75,5 +75,35 @@ void USART_Config(void)
 
 void DMA_Configuration(void)
 {
+	DMA_InitTypeDef DMA_InitStructure;
+	DMA_DeInit(DMA1_Channel5);
+	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&USART1->DR;
+	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)SrcBuf; // Notice: here have not the "&" in front of "SrcBuf"
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC; //Peripheral as source
+	DMA_InitStructure.DMA_BufferSize = 11;
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+	DMA_InitStructure.DmA_MemoryInc = DMA_MemoryInc_Enable;
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+	DMA_InitStructure.DMA_Priority = DMA_Priority_High;
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+
+	DMA_Init(DMA1_Channel5,&DMA_InitStructure);
+
+}
+
+
+int fputc(int ch,FILE *f)
+{
+	if (ch =='\n')
+	{
+		while(USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET);
+		USART_SendData(USART1,'r')
+
+	}
+	while(USRAT_GetFlagStatus(USSART1,USSART_FLAG_TC)==RESET);
+	USART_SendData(USART1,ch);
 	
+	return ch;
 }
