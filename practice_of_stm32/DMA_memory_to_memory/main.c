@@ -53,7 +53,7 @@ void RCC_Configuration(void)
 	SystemInit();
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_DMA1,ENABLE);
+	RCC_AHBPeriohClockCmd(RCC_APB2Periph_DMA1,ENABLE); //Hrer is DMA clock, so we should use "AHB" 
 
 }
 
