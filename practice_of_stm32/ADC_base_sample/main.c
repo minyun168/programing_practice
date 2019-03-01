@@ -59,7 +59,14 @@ void GPIO_Configuration(void)
 }
 
 
-void RCC_Configuration()
+void RCC_Configuration(void)
 {
+	SystemInit();
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE); //USART1
+	RCC_AHBPeriphClockCmd(RCC_AHB2Periph_DMA1,ENABLE); //ADC1 should use DMA1
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE); //ADC1
+	RCC_ADCCLKConfig(RCC_PCLK2_Div6);
 	
 }
