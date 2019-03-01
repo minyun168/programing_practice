@@ -67,6 +67,21 @@ void RCC_Configuration(void)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE); //USART1
 	RCC_AHBPeriphClockCmd(RCC_AHB2Periph_DMA1,ENABLE); //ADC1 should use DMA1
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE); //ADC1
-	RCC_ADCCLKConfig(RCC_PCLK2_Div6);
-	
+	RCC_ADCCLKConfig(RCC_PCLK2_Div6); //pclk2 clock divide to 1 of 6, now is 12MHz.
+
+}
+
+
+void USART_Config(void)
+{
+	USART_InitTypeDef USART_InitStructure;
+	USART_InitStructure.USART_BaudRate = 115200;
+	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+	USART_InitStructure.USART_StopBits = USART_StopBits_1;
+	USART_InitStructure.USART_Parity = USART_Parity_No;
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;;
+	USART_InitStructure.USART_Mode = USART_Mode_Tx; //Why use "Tx" mode? Because USART send data to PC
+	USART_Init(USART1,&USART_InitStructure); 
+	USART_Cmd(USART1,ENABLE);
+
 }
