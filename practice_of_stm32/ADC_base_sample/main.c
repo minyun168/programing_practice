@@ -85,3 +85,19 @@ void USART_Config(void)
 	USART_Cmd(USART1,ENABLE);
 
 }
+
+
+void ADC_Configuation(void)
+{
+	ADC_InitTypeDef ADC_InitStructue;
+	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
+	ADC_InitStructure.ADC_ScanConvMode = ENABLE;
+	ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+	ADC_InitStructure.ADC_NbrOfChannel = 1;
+
+	ADC_Init(ADC1,&ADC_InitStructure);
+
+	ADC_RegularChannelConfig
+}
