@@ -1,3 +1,5 @@
+//capture the voltage value of pin PC0, and print it using IO
+
 #include "stm32f10x.h"
 #include "stm32f10x_usart.h"
 #include "stdio.h"
@@ -10,7 +12,7 @@ void DMA_Configuration(void);
 void USART_Config(void);
 int fputc(int ch,FILE *f);
 void ADC_Configuration(void);
-vul6 ADC_ConvertedValue;
+vul6 ADC_ConvertedValue; //vul6?
 static unsigned long ticks;
 
 int main(void)
@@ -89,7 +91,7 @@ void USART_Config(void)
 
 void ADC_Configuation(void)
 {
-	ADC_InitTypeDef ADC_InitStructue;
+	ADC_InitTypeDef ADC_InitStructure;
 	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
 	ADC_InitStructure.ADC_ScanConvMode = ENABLE;
 	ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
@@ -119,7 +121,7 @@ void DMA_Configuation(void)
 	DMA_InitTypeDef DMA_InitStructure;
 	DMA_DeInit(DMA1_Channel1);
 	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&ADC1->DR;
-	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)&ADC_ConvertedValue;
+	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)&ADC_ConvertedValue; //u32?
 	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
 	DMA_InitStructure.DMA_BufferSize = 1;
 	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
@@ -147,5 +149,7 @@ int fputc(int ch,FILE *f)
 	while(USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET);
 	USART_SendData(USART1,ch);
 	return ch;
-	
+
 }
+
+
