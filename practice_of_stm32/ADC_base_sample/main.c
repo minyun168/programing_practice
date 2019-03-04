@@ -99,5 +99,27 @@ void ADC_Configuation(void)
 
 	ADC_Init(ADC1,&ADC_InitStructure);
 
-	ADC_RegularChannelConfig
+	ADC_RegularChannelConfig(ADC1,ADC_Channel_10,1,ADC_SampleTime_55Cycles5);
+	ADC_DMACmd(ADC1,ENABLE);
+	ADC_Cmd(ADC1,ENABLE);
+
+	ADC_ResetCalibration(ADC1);
+	while(ADC_GetResetCalibrationStatus(ADC1));
+
+	ADC_StartCalibration(ADC1);
+	while(ADC_GetCalibrationStatus(ADC1));
+
+	ADC_SoftwareStartConvCmd(ADC1,ENABLE);
+	
+}
+
+
+void DMA_Configuation(void)
+{
+	DMA_InitTypeDef DMA_InitStructure;
+	DMA_DeInit(DMA1_Channel1);
+	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&ADC1->DR;
+	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)&ADC_ConvertedValue;
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+	
 }
