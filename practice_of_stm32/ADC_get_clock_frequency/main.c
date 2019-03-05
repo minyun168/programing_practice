@@ -1,4 +1,4 @@
-//capture the voltage value of pin PC0, and print it using IO
+//Print the clock frequency
 
 #include "stm32f10x.h"
 #include "stm32f10x_usart.h"
