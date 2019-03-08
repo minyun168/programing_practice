@@ -82,6 +82,16 @@ void DAC_Configuration(void)
 	DAC_Init(DAC_Channel_1,&DAC_InitStructure);
 	DAC_SetChannelData(DAC_Align_12b_R,0);
 	DAC_Cmd(DAC_Channel_1,ENABLE);
+
+}
+
+
+void DAC_Output(u16 value)
+{
+	float tempvalue = value;
+	tempvalue = tempvalue/1000;
+	tempvalue = tempvalue*4095/3.3;
+	DAC_SetChannel1Data(DAC_Align_12b_R,tempvalue);
 	
 }
 
