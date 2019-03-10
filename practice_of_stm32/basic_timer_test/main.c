@@ -47,7 +47,7 @@ void NVIC_Configuration(void)
 	NVIC_InitStructure.NVIC_IRQChannel = TIM7_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelCMD = ENABLE;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 
 }
@@ -64,5 +64,5 @@ void TIM_Configuration(void)
 
 	TIM_UpdateRequestConfig(TIM7,TIM_UpdateSource_Regular);
 	TIM_Cmd(TIM7,ENABLE);
-	TIM_ITConfig(TIM7,TIM_IT_Update,ENABLE);
+	TIM_ITConfig(TIM7,TIM_IT_Update,ENABLE); //configure TIM7 update interrupt
 }
