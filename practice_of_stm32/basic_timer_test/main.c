@@ -1,3 +1,5 @@
+//Make LED flicker
+
 #include "stm32f10x.h"
 #include "stm32f10x_tim.h"
 #include "stm32f10x_rcc.h"
@@ -20,7 +22,7 @@ int main(void)
 	}
 }
 
-void Rcc_Configuration(void)
+void RCC_Configuration(void)
 {
 	SystemInit();
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
@@ -53,10 +55,10 @@ void NVIC_Configuration(void)
 void TIM_Configuration(void)
 {
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-	TIM_TimeBaseStructure.TIM_Prescaler = 3600-1;
+	TIM_TimeBaseStructure.TIM_Prescaler = 3600-1; //TIM7 input_clock_frequency = APB1_clock_frequency/(Prescaler+1); here is 72000000 Hz/(36000-1+1) = 2000 Hz;count 2000 times/s
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
-	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseStructure.TIM_Period = 1000;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; 
+	TIM_TimeBaseStructure.TIM_Period = 1000; // count to 1000, return 0; here 2000 times/s, so after 0.5s return to 0; and make a interrupt signal per 0.5s.
 	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
 	TIM_TimeBaseInit(TIM7,&TIM_TimeBaseStructure);
 
