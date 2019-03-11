@@ -64,5 +64,5 @@ void TIM_Configuration(void)
 
 	TIM_UpdateRequestConfig(TIM7,TIM_UpdateSource_Regular);
 	TIM_Cmd(TIM7,ENABLE);
-	TIM_ITConfig(TIM7,TIM_IT_Update,ENABLE); //configure TIM7 update interrupt
+	TIM_ITConfig(TIM7,TIM_IT_Update,ENABLE); //configure TIM7 update interrupt, set interrupt flag "TIM_IT_Update"
 }
