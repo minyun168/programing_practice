@@ -63,7 +63,7 @@ void TIM_Configuration(void)
 	TIM_TimeBaseStructure.TIM_Prescaler = 36000-1; //Configure the frequency as 2KHz
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseStructure.TIM_Period = 65535; //here differnt with base_timer_test 
+	TIM_TimeBaseStructure.TIM_Period = 65535; //here differnt with base_timer_test, I don'o know why. //P75 <<crazy stm32>>?
 	TIM_TimeBaseInit(TIM3,&TIM_TimeBaseStructure);
 
 	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_Timing; // Work in compare_output_mode
@@ -72,6 +72,6 @@ void TIM_Configuration(void)
 	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High; //set output polarity is high
 	TIM_OC1Init(TIM3,&TIM_InitStructure);
 	TIM_Cmd(TIM3,ENABLE);
-	TIM_ITConfig(TIM3,TIM_IT_CC1,ENABLE);
+	TIM_ITConfig(TIM3,TIM_IT_CC1,ENABLE); //set 
 
 }
