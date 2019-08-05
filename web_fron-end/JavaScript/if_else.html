@@ -1,0 +1,23 @@
+<!--if else statement-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+if else statement
+</title>
+</head>
+<script language="javascript">
+	function rec(form){
+	var a=form.num.value;
+	if(a%2==0) alert("This num is a double number");
+	else alert("This num is a single number");
+	}
+</script>
+<body>
+	<form>
+	<input type="text" name="num">
+	<input type="submit" value="submit" onClick="rec(this.form)">
+	
+	</form>
+</body>
+</html>
